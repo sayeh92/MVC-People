@@ -1,4 +1,4 @@
-﻿namespace MVC_People.Models.Repo
+﻿namespace MVC_People.Models.Services
 {
     public class PeopleService : IpeopleService
     {

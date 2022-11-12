@@ -21,24 +21,49 @@
         //    throw new NotImplementedException();
         //}
 
-        public bool Delete(Person person)
-        {
-            throw new NotImplementedException();
-        }
-
+          
         public List<Person> Read()
         {
-            throw new NotImplementedException();
+            return ListOfPeople;
         }
 
         public Person Read(int id)
         {
-            throw new NotImplementedException();
+            Person person = null;
+            foreach (Person aPerson in ListOfPeople) 
+            {
+                if (aPerson.Id == id)
+                {
+                    person = aPerson;
+                    break;
+                }
+            }
+            return person;
+            
         }
 
         public bool Update(Person person)
         {
-            throw new NotImplementedException();
+            Person orginalPerson = Read(person.Id);
+            if (orginalPerson != null)
+            {
+                orginalPerson.Name = person.Name;
+                orginalPerson.Id = person.Id;
+                orginalPerson.PhoneNumber = person.PhoneNumber;
+                orginalPerson.CityName = person.CityName;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Delete(Person person)
+        {
+            if (person != null)
+            {
+                ListOfPeople.Remove(person); return true;
+            }
+            return false;
         }
     }
 }
