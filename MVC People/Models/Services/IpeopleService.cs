@@ -1,9 +1,10 @@
-﻿namespace MVC_People.Models.Services
+﻿using MVC_People.Models.ViewModels;
+namespace MVC_People.Models.Services
 {
     public interface IpeopleService
     {
 
-        Person Add(CrestePersonViewModel person);
+        Person Add(CreatePersonViewModel person);
 
         List<Person> GetAll();
 
@@ -11,7 +12,7 @@
 
         List<Person> FindById(int id);
 
-        bool Edit(int id, CrestePersonViewModel person);
+        bool Edit(int id, CreatePersonViewModel person);
 
         bool Remove(int id);
 

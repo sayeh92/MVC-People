@@ -1,13 +1,14 @@
-﻿namespace MVC_People.Models.Services
+﻿using MVC_People.Models.ViewModels;
+namespace MVC_People.Models.Services
 {
     public class PeopleService : IpeopleService
     {
-        public Person Add(CrestePersonViewModel person)
+        public Person Add(CreatePersonViewModel person)
         {
             throw new NotImplementedException();
         }
 
-        public bool Edit(int id, CrestePersonViewModel person)
+        public bool Edit(int id, CreatePersonViewModel person)
         {
             throw new NotImplementedException();
         }
