@@ -2,8 +2,8 @@
 {
     public interface IPeopleRepo
     {
-        
-        Person Create(Person person);
+        //I changed the Create to Add
+        Person Add(Person person);
 
         List<Person> Read();
 
@@ -13,8 +13,6 @@
 
         bool Delete(Person  person);
 
-
-
-
+        List<Person> All();
     }
 }

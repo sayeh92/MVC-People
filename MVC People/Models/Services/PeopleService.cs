@@ -1,11 +1,27 @@
-﻿using MVC_People.Models.ViewModels;
+﻿using MVC_People.Models.Repo;
+using MVC_People.Models.ViewModels;
 namespace MVC_People.Models.Services
 {
     public class PeopleService : IpeopleService
     {
-        public Person Add(CreatePersonViewModel person)
+
+        IPeopleRepo _peopleRepo;
+        public PeopleService(IPeopleRepo peopleRepo)
         {
-            throw new NotImplementedException();
+            _peopleRepo = peopleRepo;
+        }
+        public Person Add(CreatePersonViewModel addperson)
+        {
+            Person person= new Person();
+            {
+                person.Id = addperson.Id;
+                person.Name= addperson.Name;
+                person.PhoneNumber= addperson.PhoneNumber;
+                person.CityName= addperson.CityName;
+
+            }
+            person = _peopleRepo.Add(person);
+            return person;
         }
 
         public bool Edit(int id, CreatePersonViewModel person)
@@ -23,9 +39,9 @@ namespace MVC_People.Models.Services
             throw new NotImplementedException();
         }
 
-        public List<Person> GetAll()
+        public List<Person> All()
         {
-            throw new NotImplementedException();
+            return _peopleRepo.All();
         }
 
         public bool Remove(int id)

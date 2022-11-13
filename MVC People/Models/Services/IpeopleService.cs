@@ -6,7 +6,7 @@ namespace MVC_People.Models.Services
 
         Person Add(CreatePersonViewModel person);
 
-        List<Person> GetAll();
+        List<Person> All();
 
         List<Person> FindById(string search);
 

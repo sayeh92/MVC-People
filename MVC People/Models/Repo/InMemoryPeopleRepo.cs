@@ -8,6 +8,13 @@
         private static  List<Person> ListOfPeople = new List<Person>();
         private static int IdCounter = 0;
 
+        public Person Add(Person person)
+        {
+            person.Id = ++IdCounter;
+            ListOfPeople.Add(person);
+            return person;
+
+        }
         public Person Create (Person person)
         {
             person.Id = ++IdCounter;
@@ -64,6 +71,11 @@
                 ListOfPeople.Remove(person); return true;
             }
             return false;
+        }
+
+        public List<Person> All()
+        {
+            return ListOfPeople;
         }
     }
 }
