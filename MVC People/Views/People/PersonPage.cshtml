@@ -1,7 +1,47 @@
-﻿
+﻿@model List<Person>;
 @{
     ViewData["Title"] = "PersonPage";
 }
 
 <h1>PersonPage</h1>
+<a asp-action="Create">Add a Person</a>
+<div class="row">
 
+    <div class="col-3">Id</div>
+    <div class="col-3">Name</div>
+    <div class="col-3">PhoneNumber</div>
+    <div class="col-3">CityName</div>
+
+</div>
+
+<table>
+    <thead>
+        <hr />
+    <td>Id</td>
+    <td>Name</td>
+    <td>PhoneNumber</td>
+    <td>CityName</td>
+
+    </thead>
+    <tbody>
+        @foreach (Person person in Model)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.Name</td>
+                <td>@person.PhoneNumber</td>
+                <td>@person.CityName</td>
+                <td>@Html.ActionLink("Details","Details","Animals", new {id = person.Id})</td>
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+
+@*@foreach (Person person in Model)
+{
+    <partial name="_PersonRow" model="person"></partial> 
+}*@
