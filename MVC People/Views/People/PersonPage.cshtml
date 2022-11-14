@@ -4,7 +4,9 @@
 }
 
 <h1>PersonPage</h1>
-<a asp-action="Create">Add a Person</a>
+
+<a asp-action="Add">Add a Person</a>
+
 <div class="row">
 
     <div class="col-3">Id</div>
@@ -21,8 +23,8 @@
     <td>Name</td>
     <td>PhoneNumber</td>
     <td>CityName</td>
-
     </thead>
+
     <tbody>
         @foreach (Person person in Model)
         {
@@ -31,7 +33,7 @@
                 <td>@person.Name</td>
                 <td>@person.PhoneNumber</td>
                 <td>@person.CityName</td>
-                <td>@Html.ActionLink("Details","Details","Animals", new {id = person.Id})</td>
+              
             </tr>
 
         }
@@ -41,7 +43,4 @@
 </table>
 
 
-@*@foreach (Person person in Model)
-{
-    <partial name="_PersonRow" model="person"></partial> 
-}*@
+

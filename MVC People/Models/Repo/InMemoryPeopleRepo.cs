@@ -36,7 +36,7 @@
 
         public Person Read(int id)
         {
-            Person person = null;
+            Person? person = null;
             foreach (Person aPerson in ListOfPeople) 
             {
                 if (aPerson.Id == id)
