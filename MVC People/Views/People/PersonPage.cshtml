@@ -1,13 +1,13 @@
-﻿@model List<Person>;
+﻿@model List<Person>
 @{
     ViewData["Title"] = "PersonPage";
 }
 
 <h1>PersonPage</h1>
 
-<a asp-action="Add">Add a Person</a>
+@*<a asp-action="Add">Add a Person</a>*@
 
-<div class="row">
+@*<div class="row">
 
     <div class="col-3">Id</div>
     <div class="col-3">Name</div>
@@ -15,18 +15,19 @@
     <div class="col-3">CityName</div>
 
 </div>
+<hr />*@
 
-<table>
+@*<table>
     <thead>
-        <hr />
+        
     <td>Id</td>
     <td>Name</td>
     <td>PhoneNumber</td>
     <td>CityName</td>
-    </thead>
+    </thead>*@
 
-    <tbody>
-        @foreach (Person person in Model)
+   
+     @*   @foreach (Person person in Model)
         {
             <tr>
                 <td>@person.Id</td>
@@ -36,11 +37,32 @@
               
             </tr>
 
-        }
+        }*@
 
-    </tbody>
 
-</table>
+       
+
+
+
+<div class="row font-weight-bold mt-3">
+    <div class="col-4">Name</div>
+    <div class="col-4">PhoneNumber</div>
+    <div class="col-4">CityName</div>
+</div>
+
+
+
+@foreach (Person person in Model)
+{
+    <div class="row">
+        <div class="col-4">@person.Name</div>
+        <div class="col-4">@person.PhoneNumber</div>
+        <div class="col-4">@person.CityName</div>
+    </div>
+}
+    
+
+
 
 
 

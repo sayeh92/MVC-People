@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_People.Models.Repo;
 using MVC_People.Models.Services;
-
+using MVC_People.Models;
 namespace MVC_People.Controllers
 {
     public class PeopleController : Controller
@@ -14,7 +14,7 @@ namespace MVC_People.Controllers
 
         public IActionResult PersonPage()
         {
-            return View();
+            return View(_peopleService.All());
         }
     }
 }

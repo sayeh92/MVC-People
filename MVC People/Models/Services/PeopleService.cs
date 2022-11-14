@@ -14,7 +14,7 @@ namespace MVC_People.Models.Services
         {
             Person person= new Person();
             {
-                person.Id = addperson.Id;
+                
                 person.Name= addperson.Name;
                 person.PhoneNumber= addperson.PhoneNumber;
                 person.CityName= addperson.CityName;

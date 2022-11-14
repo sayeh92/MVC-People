@@ -2,17 +2,17 @@
 {
     public interface IPeopleRepo
     {
-        //I changed the Create to Add
-        Person Add(Person person);
+      
+        public Person Add(Person person);
 
-        List<Person> Read();
+        public List<Person> Read();
 
-        Person Read(int id);
-                 
-        bool Update (Person person);
+        public Person Read(int id);
 
-        bool Delete(Person  person);
+        public bool Update (Person person);
 
-        List<Person> All();
+        public bool Delete(Person  person);
+
+        public List<Person> All();
     }
 }
