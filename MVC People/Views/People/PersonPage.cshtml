@@ -21,6 +21,7 @@
         <div class="col-4">@person.Name</div>
         <div class="col-4">@person.PhoneNumber</div>
         <div class="col-4">@person.CityName</div>
+        <div>@Html.ActionLink("Details","Details","People", new {id = person.Id})</div>
     </div>
 }
     
