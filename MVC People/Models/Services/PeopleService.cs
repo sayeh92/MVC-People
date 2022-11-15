@@ -12,6 +12,10 @@ namespace MVC_People.Models.Services
         }
         public Person Add(CreatePersonViewModel addperson)
         {
+            if (string.IsNullOrWhiteSpace(addperson.Name) || 
+                string.IsNullOrWhiteSpace(addperson.CityName) || 
+                string.IsNullOrWhiteSpace(addperson.PhoneNumber)) 
+            { throw new ArgumentException("Name, CityName, PhoneNumber Not allowed WhiteSpace"); }
             Person person= new Person();
             {
                 
@@ -29,14 +33,14 @@ namespace MVC_People.Models.Services
             throw new NotImplementedException();
         }
 
-        public List<Person> FindById(string search)
+        public List<Person> Search(string search)
         {
             throw new NotImplementedException();
         }
 
-        public List<Person> FindById(int id)
+        public Person FindById(int id)
         {
-            throw new NotImplementedException();
+            return _peopleRepo.Read(id);
         }
 
         public List<Person> All()

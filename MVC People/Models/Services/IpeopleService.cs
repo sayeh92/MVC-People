@@ -8,9 +8,9 @@ namespace MVC_People.Models.Services
 
         List<Person> All();
 
-        List<Person> FindById(string search);
+        List<Person> Search(string search);
 
-        List<Person> FindById(int id);
+        Person FindById(int id);
 
         bool Edit(int id, CreatePersonViewModel person);
 

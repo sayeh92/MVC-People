@@ -8,6 +8,7 @@
         private static  List<Person> ListOfPeople = new List<Person>();
         private static int IdCounter = 0;
 
+        //Adding person
         public Person Add(Person person)
         {
             person.Id = ++IdCounter;
@@ -15,16 +16,30 @@
             return person;
 
         }
-      
-       
-        public List<Person> Read()
+
+        //Showing all person
+        public List<Person> All()
         {
             return ListOfPeople;
         }
 
+
+        public List<Person> Read(string CityName)
+        {
+           List<Person> ListForCityInMemory = new List<Person>();
+           foreach (Person aPerson in ListForCityInMemory) 
+            {
+                if(aPerson.CityName == CityName)
+                {
+                    ListForCityInMemory.Add(aPerson);
+                }
+            }
+           return ListForCityInMemory;
+        }
+
         public Person Read(int id)
         {
-        
+            Person? person = null;
             foreach (Person aPerson in ListOfPeople) 
             {
                 if (aPerson.Id == id)
@@ -33,10 +48,11 @@
                    
                 }
             }
-            return null;
+            return person;
             
         }
 
+        //Updating the details
         public bool Update(Person person)
         {
             Person orginalPerson = Read(person.Id);
@@ -60,9 +76,7 @@
             return false;
         }
 
-        public List<Person> All()
-        {
-            return ListOfPeople;
-        }
+     
+      
     }
 }
