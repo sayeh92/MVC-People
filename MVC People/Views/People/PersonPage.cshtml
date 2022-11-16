@@ -8,9 +8,10 @@
 <a asp-action="Add">Add a Person</a>
 
   <div class="row font-weight-bold mt-3">
-    <div class="col-4">Name</div>
-    <div class="col-4">Phone Number</div>
-    <div class="col-4">City</div>
+    <div class="col-3">Name</div>
+    <div class="col-3">Phone Number</div>
+    <div class="col-3">City</div>
+    <div class="col-3"></div>
 </div>
 
 
@@ -18,10 +19,12 @@
 @foreach (Person person in Model)
 {
     <div class="row">
-        <div class="col-4">@person.Name</div>
-        <div class="col-4">@person.PhoneNumber</div>
-        <div class="col-4">@person.CityName</div>
-        <div>@Html.ActionLink("Details","Details","People", new {id = person.Id})</div>
+        <div class="col-3">@person.Name</div>
+        <div class="col-3">@person.PhoneNumber</div>
+        <div class="col-3">@person.CityName</div>
+        <div class="col-1.5">@Html.ActionLink("Details","Details","People", new {id = person.Id})</div>
+        <div class="col-1.5">@Html.ActionLink("DeleteButton","DeleteButton","People", new {id = person.Id})</div>
+        
     </div>
 }
     

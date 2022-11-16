@@ -16,7 +16,6 @@
 
         //DELETE
         public bool Delete(Person  person);
-
       
     }
 }

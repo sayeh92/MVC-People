@@ -3,6 +3,9 @@ using MVC_People.Models.Repo;
 using MVC_People.Models.Services;
 using MVC_People.Models;
 using MVC_People.Models.ViewModels;
+using NuGet.Protocol;
+using System.Net;
+using System;
 
 namespace MVC_People.Controllers
 {
@@ -13,6 +16,8 @@ namespace MVC_People.Controllers
         {
             _peopleService = new PeopleService(new InMemoryPeopleRepo());
         }
+
+
 
         public IActionResult PersonPage()
         {
@@ -27,40 +32,55 @@ namespace MVC_People.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Add(CreatePersonViewModel createPerson) 
+        public IActionResult Add(CreatePersonViewModel addPerson) 
         {
          if (ModelState.IsValid) 
             {
              try
                 {
-                    _peopleService.Add(createPerson);
+                    _peopleService.Add(addPerson);
                 }
                 catch (ArgumentException exception)
                 {
                     ModelState.AddModelError("Name and CityName", exception.Message);
-                    return View(createPerson);
+                    return View(addPerson);
                 }
 
                 //after adding the person, with this line of code it goes back to the whole list, 
                 //otherwise it will stay in the same form and you can not see the information you submitted.
                 return RedirectToAction(nameof(PersonPage));  
             }
-            return View(createPerson);
+            return View(addPerson);
         }
 
-        //public IpeopleService Get_peopleService()
-        //{
-        //    return _peopleService;
-        //}
-
+    
         public IActionResult Details(int id) 
         {
          Person person = _peopleService.FindById(id);
+
             if (person == null) 
             {
                 return RedirectToAction(nameof(PersonPage));    
             }
+
             return View(person);
         }
+
+        public IActionResult DeleteButton(int id)
+        {
+
+            Person person = _peopleService.FindById(id);
+
+            if (person == null)
+            {
+                return RedirectToAction(nameof(PersonPage));
+            }
+
+            return View(person);
+
+        }
+
+       
+       
     }
 }

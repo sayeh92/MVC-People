@@ -71,7 +71,8 @@
         {
             if (person != null)
             {
-                ListOfPeople.Remove(person); return true;
+                ListOfPeople.Remove(person);
+                return true;
             }
             return false;
         }
