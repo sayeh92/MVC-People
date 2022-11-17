@@ -9,16 +9,20 @@
         private static int IdCounter = 0;
 
         //Adding person
-        public Person Add(Person person)
+        public Person Add(string name, string phonenumber, string cityname)
         {
+            Person person = new Person(name, phonenumber, cityname);
             person.Id = ++IdCounter;
+            person.Name= name;
+            person.PhoneNumber = phonenumber;
+            person.CityName = cityname;
             ListOfPeople.Add(person);
             return person;
 
         }
 
         //Showing all person
-        public List<Person> All()
+        public List<Person> Read()
         {
             return ListOfPeople;
         }

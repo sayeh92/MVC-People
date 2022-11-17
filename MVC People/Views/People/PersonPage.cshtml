@@ -18,14 +18,7 @@
 
 @foreach (Person person in Model)
 {
-    <div class="row">
-        <div class="col-3">@person.Name</div>
-        <div class="col-3">@person.PhoneNumber</div>
-        <div class="col-3">@person.CityName</div>
-        <div class="col-1.5">@Html.ActionLink("Details","Details","People", new {id = person.Id})</div>
-        <div class="col-1.5">@Html.ActionLink("DeleteButton","DeleteButton","People", new {id = person.Id})</div>
-        
-    </div>
+    <partial name="_PersonDisplay" model="person"/>
 }
     
 

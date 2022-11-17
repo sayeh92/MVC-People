@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_People.Models.Repo;
 using MVC_People.Models.Services;
-using MVC_People.Models;
 using MVC_People.Models.ViewModels;
 using NuGet.Protocol;
 using System.Net;
 using System;
+using Microsoft.AspNetCore.Identity;
+using MVC_People.Models;
 
 namespace MVC_People.Controllers
 {
@@ -53,7 +54,7 @@ namespace MVC_People.Controllers
             return View(addPerson);
         }
 
-    
+        //Details Button
         public IActionResult Details(int id) 
         {
          Person person = _peopleService.FindById(id);
@@ -66,7 +67,42 @@ namespace MVC_People.Controllers
             return View(person);
         }
 
-        public IActionResult DeleteButton(int id)
+        //Edit Button
+        [HttpGet]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(int id)
+        {
+            Person person = _peopleService.FindById(id);
+            if (person == null)
+            {
+                return RedirectToAction(nameof(PersonPage));
+            }
+            CreatePersonViewModel editPerson = new CreatePersonViewModel();
+            {
+                
+                editPerson.Name = person.Name;
+                editPerson.PhoneNumber = person.PhoneNumber;
+                editPerson.CityName = person.CityName;
+            }
+            return View(editPerson);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+
+        public IActionResult Edit(int id,CreatePersonViewModel editPerson)
+        {
+            if (ModelState.IsValid) 
+            {
+            _peopleService.Edit(id, editPerson);
+                return RedirectToAction(nameof(PersonPage));
+            }
+            _peopleService.Add(editPerson);
+            return View(editPerson);
+        }
+
+        //Delete Button
+        public IActionResult Delete(int id)
         {
 
             Person person = _peopleService.FindById(id);
@@ -74,6 +110,10 @@ namespace MVC_People.Controllers
             if (person == null)
             {
                 return RedirectToAction(nameof(PersonPage));
+            }
+            else
+            {
+                _peopleService.Remove(id);
             }
 
             return View(person);
