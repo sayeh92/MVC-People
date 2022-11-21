@@ -3,10 +3,11 @@
     public interface IPeopleRepo
     {
         //CREATE
-        public Person Add(Person person);
+        public Person Add(String name, string phonenumber, string cityname);
         //READ
-        public List<Person> All();
-        public List<Person> Read(string CityName);
+        public List<Person> Read();
+
+        public List<Person> ReadByCity(string cityname);
 
         public Person Read(int id);
 
@@ -16,7 +17,6 @@
 
         //DELETE
         public bool Delete(Person  person);
-
-      
+       // List<Person> ReadByCity();
     }
 }

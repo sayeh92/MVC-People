@@ -9,33 +9,37 @@
         private static int IdCounter = 0;
 
         //Adding person
-        public Person Add(Person person)
+        public Person Add(string name, string phonenumber, string cityname)
         {
+            Person person = new Person(name, phonenumber, cityname);
             person.Id = ++IdCounter;
+            person.Name= name;
+            person.PhoneNumber = phonenumber;
+            person.CityName = cityname;
             ListOfPeople.Add(person);
             return person;
 
         }
 
         //Showing all person
-        public List<Person> All()
+        public List<Person> Read()
         {
             return ListOfPeople;
         }
 
 
-        public List<Person> Read(string CityName)
-        {
-           List<Person> ListForCityInMemory = new List<Person>();
-           foreach (Person aPerson in ListForCityInMemory) 
-            {
-                if(aPerson.CityName == CityName)
-                {
-                    ListForCityInMemory.Add(aPerson);
-                }
-            }
-           return ListForCityInMemory;
-        }
+        //public List<Person> ReadByCity(string cityname)
+        //{
+        //    List<Person> listforcityinmemory = new List<Person>();
+        //    foreach (Person aperson in listforcityinmemory)
+        //    {
+        //        if (aperson.CityName == cityname)
+        //        {
+        //            listforcityinmemory.Add(aperson);
+        //        }
+        //    }
+        //    return listforcityinmemory;
+        //}
 
         public Person Read(int id)
         {
@@ -71,12 +75,28 @@
         {
             if (person != null)
             {
-                ListOfPeople.Remove(person); return true;
+                ListOfPeople.Remove(person);
+                return true;
             }
             return false;
         }
 
-     
-      
+        public List<Person> ReadByCity(string cityname)
+        {
+            List<Person> ListOfPeople = new List<Person>();
+            foreach (Person aperson in ListOfPeople)
+            {
+                if (aperson.CityName == cityname)
+                {
+                    ListOfPeople.Add(aperson);
+                }
+            }
+            return ListOfPeople;
+        }
+
+        //public List<Person> ReadByCity()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
