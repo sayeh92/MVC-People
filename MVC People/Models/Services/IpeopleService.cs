@@ -7,6 +7,8 @@ namespace MVC_People.Models.Services
         Person Add(CreatePersonViewModel addPerson);
 
         List<Person> All();
+       // List<Person> ReadByCity();
+        List<Person> ReadByCity(string cityname);
 
         List<Person> Search(string search);
 

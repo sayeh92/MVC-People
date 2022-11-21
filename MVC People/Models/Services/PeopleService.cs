@@ -1,4 +1,5 @@
-﻿using MVC_People.Models.Repo;
+﻿
+using MVC_People.Models.Repo;
 using MVC_People.Models.ViewModels;
 namespace MVC_People.Models.Services
 {
@@ -17,6 +18,7 @@ namespace MVC_People.Models.Services
                 string.IsNullOrWhiteSpace(addperson.CityName) ||
                 string.IsNullOrWhiteSpace(addperson.PhoneNumber))
             { throw new ArgumentException("Name, CityName, PhoneNumber Not allowed WhiteSpace"); }
+
             //Person person = new();
             //{
 
@@ -53,6 +55,11 @@ namespace MVC_People.Models.Services
             return _peopleRepo.Read();
         }
 
+        public List<Person> ReadByCity(string cityname)
+        {
+            return _peopleRepo.ReadByCity(cityname);
+        }
+
         public bool Remove(int id)
         {
             Person DeletePerson = _peopleRepo.Read(id);
@@ -63,10 +70,27 @@ namespace MVC_People.Models.Services
 
         public List<Person> Search(string search)
         {
+            List<Person> SearchPerson = _peopleRepo.Read();
+          
+            foreach(Person item in _peopleRepo.Read())
+            {
+                if(item.Name.Contains(search, StringComparison.OrdinalIgnoreCase) || 
+                    item.CityName.Contains(search,StringComparison.OrdinalIgnoreCase)) 
+                {
+                   
+                    SearchPerson = SearchPerson.Where(p => p.Name.ToUpper().Contains(search.ToUpper()) ||
+                    p.CityName.Contains(search.ToUpper())).ToList();
+                    SearchPerson.Add(item);
+                }
+            }
 
-            throw new NotImplementedException();
-            //list<person> searchperson = new _peoplerepo.read();
+            if (SearchPerson.Count == 0) 
+            {
+                throw new ArgumentException("Not here");
+            }
+            return SearchPerson;
         }
 
+        
     }
 }

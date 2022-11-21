@@ -28,18 +28,18 @@
         }
 
 
-        public List<Person> Read(string CityName)
-        {
-           List<Person> ListForCityInMemory = new List<Person>();
-           foreach (Person aPerson in ListForCityInMemory) 
-            {
-                if(aPerson.CityName == CityName)
-                {
-                    ListForCityInMemory.Add(aPerson);
-                }
-            }
-           return ListForCityInMemory;
-        }
+        //public List<Person> ReadByCity(string cityname)
+        //{
+        //    List<Person> listforcityinmemory = new List<Person>();
+        //    foreach (Person aperson in listforcityinmemory)
+        //    {
+        //        if (aperson.CityName == cityname)
+        //        {
+        //            listforcityinmemory.Add(aperson);
+        //        }
+        //    }
+        //    return listforcityinmemory;
+        //}
 
         public Person Read(int id)
         {
@@ -81,7 +81,22 @@
             return false;
         }
 
-     
-      
+        public List<Person> ReadByCity(string cityname)
+        {
+            List<Person> ListOfPeople = new List<Person>();
+            foreach (Person aperson in ListOfPeople)
+            {
+                if (aperson.CityName == cityname)
+                {
+                    ListOfPeople.Add(aperson);
+                }
+            }
+            return ListOfPeople;
+        }
+
+        //public List<Person> ReadByCity()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

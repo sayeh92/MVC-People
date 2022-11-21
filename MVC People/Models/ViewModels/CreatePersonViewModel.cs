@@ -19,7 +19,7 @@ namespace MVC_People.Models.ViewModels
         {
             get
             {
-                return new List<string> { "Mars", "Venus", "Earth", "Moon", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune" }; 
+                return new List<string> { "mars", "venus", "earth", "moon", "sun", "jupiter", "saturn", "uranus", "neptune" }; 
 
             }
         }

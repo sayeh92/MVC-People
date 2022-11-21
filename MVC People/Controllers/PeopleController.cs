@@ -13,7 +13,7 @@ namespace MVC_People.Controllers
     public class PeopleController : Controller
     {
         IpeopleService _peopleService;
-        public PeopleController ()
+        public PeopleController()
         {
             _peopleService = new PeopleService(new InMemoryPeopleRepo());
         }
@@ -26,18 +26,18 @@ namespace MVC_People.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add() 
+        public IActionResult Add()
         {
             return View(new CreatePersonViewModel());
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Add(CreatePersonViewModel addPerson) 
+        public IActionResult Add(CreatePersonViewModel addPerson)
         {
-         if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-             try
+                try
                 {
                     _peopleService.Add(addPerson);
                 }
@@ -49,19 +49,19 @@ namespace MVC_People.Controllers
 
                 //after adding the person, with this line of code it goes back to the whole list, 
                 //otherwise it will stay in the same form and you can not see the information you submitted.
-                return RedirectToAction(nameof(PersonPage));  
+                return RedirectToAction(nameof(PersonPage));
             }
             return View(addPerson);
         }
 
         //Details Button
-        public IActionResult Details(int id) 
+        public IActionResult Details(int id)
         {
-         Person person = _peopleService.FindById(id);
+            Person person = _peopleService.FindById(id);
 
-            if (person == null) 
+            if (person == null)
             {
-                return RedirectToAction(nameof(PersonPage));    
+                return RedirectToAction(nameof(PersonPage));
             }
 
             return View(person);
@@ -79,7 +79,7 @@ namespace MVC_People.Controllers
             }
             CreatePersonViewModel editPerson = new CreatePersonViewModel();
             {
-                
+
                 editPerson.Name = person.Name;
                 editPerson.PhoneNumber = person.PhoneNumber;
                 editPerson.CityName = person.CityName;
@@ -90,11 +90,11 @@ namespace MVC_People.Controllers
         [HttpPost]
         [AutoValidateAntiforgeryToken]
 
-        public IActionResult Edit(int id,CreatePersonViewModel editPerson)
+        public IActionResult Edit(int id, CreatePersonViewModel editPerson)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-            _peopleService.Edit(id, editPerson);
+                _peopleService.Edit(id, editPerson);
                 return RedirectToAction(nameof(PersonPage));
             }
             _peopleService.Add(editPerson);
@@ -120,7 +120,56 @@ namespace MVC_People.Controllers
 
         }
 
-       
-       
-    }
+        [HttpPost]
+        public IActionResult PersonPage(string search)
+        {
+            if (search != null)
+            {
+                return View(_peopleService.Search(search));
+            }
+            return RedirectToAction(nameof(PersonPage));
+        }
+
+        //This is for ajaxListOfPoeple-get-function in Ajax. 
+        public IActionResult PartialViewPeople()
+        {
+
+            return PartialView("_PeopleList", _peopleService.All());
+        }
+        
+        [HttpPost]
+        public IActionResult PartialViewDetails(int id)
+        {
+            Person person = _peopleService.FindById(id);
+            if (person != null)
+            {
+                return PartialView("_personDisplay", person);
+            }
+            return NotFound();
+        }
+
+
+        public IActionResult Ajax(int id)
+        {
+            Person person = _peopleService.FindById(id);
+            if (_peopleService.Remove(id))
+            {
+                return PartialView("_peopleList", _peopleService.All());
+            }
+            return NotFound();
+        }
+
+
+        public IActionResult SearchCity(string search)
+        {
+            List<Person> person = _peopleService.Search(search);
+            if (person != null)
+            {
+                return PartialView("_peopleList", person);
+
+            }
+            return BadRequest();
+
+        }
+    } 
 }
